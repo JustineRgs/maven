@@ -4,9 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>dev</groupId>
-	<artifactId>premier-projet-maven</artifactId>
+	<artifactId>
+		premier-projet-maven</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>
+		jar</packaging>
 
 	<name>premier-projet-maven</name>
 	<url>http://maven.apache.org</url>
@@ -14,11 +16,20 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>3.8.1</junit.version>
+		<mode>DEV</mode>
 	</properties>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
+
 
 	<dependencies>
 		<dependency>
@@ -33,4 +44,22 @@
 			<version>0.0.3</version>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<mode>DEV</mode>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<mode>PROD</mode>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>
